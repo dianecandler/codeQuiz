@@ -1,4 +1,8 @@
 
+var quizContainer = document.getElementById('quiz');
+var resultsContainer = document.getElementById('results');
+var submitButton = document.getElementById('submit');
+
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
     function showQuestions(questions, quizContainer){
         // need code stuff here
@@ -87,12 +91,12 @@ function showQuestions(questions, quizContainer){
 
     // reset and create collection for answer list 
         answers = [];
-// for each available answer to questions
-for(number in questions[i].answers){
-    // insert html RADIO button - DIANE MODIFY RADIO or type of button
-    answers.push(
+    // for each available answer to questions
+    for(number in questions[i].answers){
+        // insert html RADIO button - DIANE MODIFY RADIO or type of button
+        answers.push(
         '<label>'
-            +'<input type="button" name="question'+i+'"value="'+number+'">'
+            +'<input type="radio" name="question'+i+'"value="'+number+'">'
             + number + ' : '
             + questions[i].answers[number]
         +'</label>'
@@ -105,38 +109,46 @@ for(number in questions[i].answers){
     );
     }
 // combine output list into one string of html and put it on the page
-        quizContainer.innerHTML = output.join('');
-    }
+    quizContainer.innerHTML = output.join('');
+}
 // run function with values from generateQuiz function
     showQuestions(questions, quizContainer);
 
+// Next 1) collect user selected answer, 2) if correct, respond, 
+// 3) if not correct, respond, 4) show the number of correct answers out of the total?  
+// OR JUST TALLY and subtract 10 sec from timer for wrong answers
 
-// check work
+function showResults(questions, quizContainer, resultsContainer){
+    // collect answer containers for quiz?
+    var answerContainers = quizContainer.querySelectorAll('.answers');
+    // track user answers
+    var userAnswer = '';
+    var numCorrect = 0;
+    // for each question run the for function
+    for(var i=0; i<questions.length; i++){
 
-
-    // show number of correct answers out of total
-    // resultsContainer.innerHTML = numCorrect + 'out of ' + questions.length;
-    // }
-
-          // need to house responses and answer options
-          var output = [];
-          var answers;
-  
-          // for each question need this for
-          for(var i=0; i<questions.length; i++){
-  
-          // for user selected response or answer
-          userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{).value;
-          // if correct answer
-          if(userAnswer===question[i].correctAnswer){
-              // add the number of correct answers
-              numCorrect++;
-              // color the answer green
-              answerContainers[i].style.color = 'green';
+        // find selected answer
+        userAnswer = (answerContainers[i].correctAnswer){
+        // if correct add to total correct
+        if(userAnswer===questions(i).correctAnswer){
+            numCorrect++;
+        // respond to user in green
+        answerContainers[i].style.color = 'green';
           }
           // if incorrect answer or blank
-          else{
+        else{
               // color the answer red
-              }
-          }
-  
+        answersContainers[i].style.color = 'red';
+            }
+        }
+    }
+    // show number of correct answers out of total
+    resultsContainer.innerHTML = numCorrect + 'out of ' + questions.length;
+}
+
+// show results on submitButton - the variable comes from generateQuiz function as 1 of the parameters
+submitButton.onclick = function(){
+    showResults(questions, quizContainer, resultsContainer);
+}
+// Bring all together by linking JS and HTML elements placed at the top
+generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);

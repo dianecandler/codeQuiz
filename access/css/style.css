@@ -1,3 +1,17 @@
 navbar {
 	background-color: aquamarine;
 }
+body{
+	font-size: 20px;
+	color: black;
+}
+.question{
+	font-weight: bold;
+}
+.answers {
+	font-weight: lighter;
+}
+#submit {
+	font-size: 24px;
+}
+/* add hover css for user to see option highlighted before choosing */
