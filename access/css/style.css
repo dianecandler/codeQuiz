@@ -1,12 +1,14 @@
 navbar {
 	background-color: aquamarine;
 }
-body{
+body {
 	font-size: 20px;
 	color: black;
 }
-.question{
+.questions {
 	font-weight: bold;
+	font-size: large;
+	color: black;
 }
 .answers {
 	font-weight: lighter;
