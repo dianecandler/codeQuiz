@@ -26,7 +26,6 @@ $(document).ready(function () {
 			q4: [ 'commas', 'curly brackets', 'quotes', 'paranthesis' ],
 			q5: [ 'JavaScript', 'terminal/bash', 'for loops', 'console.log' ]
 		},
-
 		answers: {
 			q1: 'alerts',
 			q2: 'curly brackets',
