@@ -1,9 +1,13 @@
-navbar {
+/* navbar {
 	background-color: aquamarine;
-}
+} */
+/* this line trumps over JS JQ styling */
 body {
 	font-size: 20px;
-	color: black;
+	color: purple;
+}
+/* #start {
+	font-size: smalll;
 }
 .questions {
 	font-weight: bold;
@@ -15,7 +19,7 @@ body {
 }
 #submit {
 	font-size: 24px;
-}
+} */
 /* add hover css for user to see option highlighted before choosing */
 /* BELOW from CLASS TIMER */
 /* *,
