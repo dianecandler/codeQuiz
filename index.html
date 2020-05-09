@@ -1,99 +1,36 @@
-  
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang=“en”><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="./access/css/style.css" />
+    <script src=“https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js”></script>
+    <link rel=“stylesheet” href=“https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css” />
+    <link rel=“stylesheet” href=“./access/css/style.css” />
     <title>Coding Quiz</title>
 </head>
-<body>
-    <div class='container'>
-
-        <header>
-            <h1>Coding Quiz</h1>
-        </header>
-        
-    </div>
-
-    <div class='jumbotron'>
-        <div class='container' >
-            <div id='game'>
-                <h1>hello</h1>
-                <p id="question"></p>
-            </div>
+<body>  
+    <div class=“container”>
+<!-- Using jumbotron from Bootstrap -->
+    <div class=“jumbotron jumbotron-fluid”>
+      <div class=“container”>
+        <div id=“game”>
+          <h2>Coding Quiz Game</h2>
+          <p id=“question” class=“lead”></p>
         </div>
-        <div id='results'/>
-    </div>
+        <div id=“results”></div>
+      </div>     
+      <div class=“row”>
+        <div id=“choices” class=“text-center”>
+          <button id=“start” class=“btn btn-info btn-lg”>Start Game</button>
+          <div id=“options”></div>      
+       </div> 
+      </div>   
+    </div>    
+    <!-- jQuery CDN-->
+    <script src=“https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js”></script>
+    <!-- Bootstrap CDN -->
+    <script src=“https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js”
+      integrity=“sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa”
+      crossorigin=“anonymous”></script>
+    <!-- TRIVIA APP JS -->
+    <script src=“./access/scripts.js”></script></body></html>
 
-    <div class='row'>
-        <button id='start' class='btn btn-lg btn-info'>
-            Start Game
-        </button>
-        <div id='options'>
-        </div>
-
-    </div>
-
-
-    <!-- DELETE added decoding  tag characters once runs properly -->
-    <!-- <div id="questions">hi</div>
-    <input type="radio" value="false"><span>hbfhjdsbfkjs</span>
-    <div id="ansA">sdfgdf</div>
-    <div id="ansB">sdfgdfg</div>
-    <div id="ansC">gfgfg</div>
-    <div id="ansD">fgsdfhsfghdfghj</div>
-    <div id="correctornot">yep</div> -->
-
-    <!-- <DIV class="container">
-        <p id="timer">
-             <span id="timer-mins">0</span>
-             <span id="timer-secs">75</span>
-        </p>
-    </DIV> -->
-
-
-<!-- class timer EXAMPLE  -->
-    <div class="container">
-      <div class="timer">
-        <div id="hand"></div>
-        <div class="controls">
-          <label class="switch" for="status-toggle">
-            <input checked type="checkbox" name="status-toggle" id="status-toggle" />
-            <span class="slider"></span>
-          </label>
-          <div class="status">Status: <span id="status">Working</span></div>
-          <div class="time">
-            <div id="minutes">0</div>
-            <div id="seconds">75</div>
-          </div>
-          <div class="buttons">
-            <button aria-label="play" id="play">
-              <i class="fa fa-play" aria-hidden="true"></i>
-            </button>
-            <button aria-label="pause" id="pause">
-              <i class="fa fa-pause" aria-hidden="true"></i>
-            </button>
-            <button aria-label="stop" id="stop">
-              <i class="fa fa-stop" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="inputs">
-        <div class="input-group">
-          <label for="work-minutes">Minutes of Work</label>
-          <input type="number" name="work" id="work-minutes" value="75" />
-        </div>
-        <div class="input-group">
-          <label for="rest-minutes">Minutes of Rest</label>
-          <!-- <input type="number" name="rest" id="rest-minutes" value="5" /> -->
-        </div>
-      </div>
-    </div>
-
-    <script src="./access/scripts.js"></script>
-</body>
-</html>

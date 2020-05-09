@@ -1,293 +1,405 @@
-$(document).ready(function () {
-	// jQuery methods go here...
-	//event listeners
-	$('#start').on('click', quiz.startGame);
+$(document).ready(function () {   
+	// event listeners using JQuery
+	$("#remaining-time").hide();
+	$("#start").on('click', quiz.startGame);
 	$(document).on('click', '.option', quiz.checkAnswers);
-});
+})
+	var quiz = {
+		// quiz properties here
+		correct: 0,
+		incorrect: 0,
+		unanswered: 0,
+		currentScore: 0,
+		quizTimer: false,
+		timerId: '',
+	questions: {
+		q1:  'What is the color of the sky?',
+		q2:	 'What color is the ground?',
+		q3:  'What color are clouds?',
+		q4:  'What color is the road?'
+   		},
+   options: {
+	   q1: ['Red', 'Green','Blue','Purple'],
+	   q2: ['Red', 'Green','Blue','Purple'],
+	   q3: ['Red', 'Green','Blue','Purple'],	   
+	   q4: ['Red', 'Green','Blue','Purple'],
+	   },
+
+   answers: {
+	   q1: 'Red',
+	   q2: 'Green',
+	   q3: 'Red',
+	   q4: 'Blue',
+   		},
+	},
+   // quiz methods
+   // method to initialize game
+   startGame: funcrtion() { 
+	   // restarting game results
+	   quiz.currentScore = 0;
+	   quiz.correct = 0;
+	   quiz.incorrect = 0;
+	   quiz.unanswered = 0;
+	   clearInterval(quiz.timerId);        
+	   // show game section
+	   $("#game").show();        
+	   //  empty last results
+	   $("#results").html("");        
+	   // remove start button
+	   $("#start").hide();        
+	   // ask first question
+	   quiz.nextQuestion();    
+	}
+   // method to loop through and display questions and options
+   nextQuestion: function () {        
+	   // to prevent timer speed up
+	   if (!quiz.quizTimer) {
+		   quiz.timerId = setInterval(quiz.userAnswers, 1000);
+	   }        
+	   // gets all the questions then indexes the current questions
+	   var questionContent = Object.values(quiz.questions)[quiz.currentScore];
+	   $("#question").text(questionContent);        
+	   // an array of all the user options for the current question
+	   var questionOptions = Object.values(quiz.options)[quiz.currentScore];        // creates all the quiz guess options in the html
+	   $.each(questionOptions, function (index, key) {
+		   $("#options").append($("<button class=“option btn btn-info btn-lg”>" + key + "</button>"));
+	   })    
+	},
+   // method to decrement counter and count unanswered if timer runs out
+   userAnswers: function () {        
+	   // if all the questions have been shown end the game, show results
+	   if (quiz.currentScore === Object.keys(quiz.questions).length) {            // adds results of game (correct, incorrect, unanswered) to the page
+		   $("#results")
+			   .html("<h3>Thank you for playing!</h3>" +
+				   "<p>Correct: " + quiz.correct + "</p>" +
+				   "<p>Incorrect: " + quiz.incorrect + "</p>" +
+				   "<p>Unaswered: " + quiz.unanswered + "</p>" +
+				   "<p>Please play again!</p>");           
+			// hide game sction
+		   $("#game").hide();            
+		   // show start button to begin a new game
+		   $("#start").show();
+	   }   
+	},
+   // method to evaluate the option clicked
+   checkAnswers: function () {        
+	   // the answer to the current question being asked
+	   var currentAnswer = Object.values(quiz.answers)[quiz.currentScore];        
+	   if ($(this).text() === currentAnswer) {
+		   $(this).addClass('btn-success').removeClass('btn-info');            
+		   quiz.correct++;
+		   clearInterval(quiz.timerId);
+		   resultId = setTimeout(quiz.guessResult, 1000);
+		   $('#results').html('<h3>Correct Answer!</h3>');
+	   },
+	
+	   else {
+		   $(this).addClass('btn-danger').removeClass('btn-info');            
+		   quiz.incorrect++;
+		   clearInterval(quiz.timerId);
+		   resultId = setTimeout(quiz.guessResult, 1000);
+		   $('#results').html('<h3>Ops wrong answer, the right choice was ’ + currentAnswer + ‘</h3>‘);
+	   },
+	}
+   // method to remove previous question results and options
+   guessResult: function () {        
+	   // increment to next question set
+	   quiz.currentScore++;       
+	   // remove the options and results
+	   $('.option').remove();
+	   $('#results h3').remove();        
+	   // begin next question
+	   quiz.nextQuestion();    
+	}
+
+
+// start over above here - lots of power outages and using JQuery
+
+
 // let question = document.getElementById('questions');
 // let answerA = document.getElementById('ansA');
 // let answerB = document.getElementById('ansB');
 // let answerC = document.getElementById('ansC');
-// let answerD = document.getElementById('ansD');
+//  let answerD = document.getElementById('ansD');
 // let displaycorrect = document.getElementById('correctornot');
 
-var quiz = {
-	correct: 0,
-	incorrect: 0,
-	unanswered: 0,
-	currentScore: 0,
+// var quiz = {
+// 	correct: 0,
+// 	incorrect: 0,
+// 	unanswered: 0,
+// 	currentScore: 0,
 
-	//questions and options
-	questions: {
-		q1: 'What color is the sky?',
-		q2: 'What color is the ground',
-		q3: 'What colour is the  clouds',
-		q4: 'What colour is the road'
-	},
+// 	//questions and options
+// 	questions: {
+// 		q1: 'What color is the sky?',
+// 		q2: 'What color is the ground',
+// 		q3: 'What colour is the  clouds',
+// 		q4: 'What colour is the road'
+// 	},
 
-	options: {
-		q1: [ 'Red', 'Green', 'Blue', 'Purple' ],
-		q2: [ 'Red', 'Green', 'Blue', 'Purple' ],
-		q3: [ 'Red', 'Green', 'Blue', 'Purple' ],
-		q4: [ 'Red', 'Green', 'Blue', 'Purple' ]
-	},
+// 	options: {
+// 		q1: [ 'Red', 'Green', 'Blue', 'Purple' ],
+// 		q2: [ 'Red', 'Green', 'Blue', 'Purple' ],
+// 		q3: [ 'Red', 'Green', 'Blue', 'Purple' ],
+// 		q4: [ 'Red', 'Green', 'Blue', 'Purple' ]
+// 	},
 
-	answers: {
-		q1: 'Red',
-		q2: 'Green',
-		q3: 'Red',
-		q4: 'Blue'
-	},
+// 	answers: {
+// 		q1: 'Red',
+// 		q2: 'Green',
+// 		q3: 'Red',
+// 		q4: 'Blue'
+// 	},
 
-	startGame: function () {
-		quiz.currentScore = 0;
-		quiz.correct = 0;
-		quiz.incorrect = 0;
-		quiz.unanswered = 0;
+// 	startGame: function () {
+// 		quiz.currentScore = 0;
+// 		quiz.correct = 0;
+// 		quiz.incorrect = 0;
+// 		quiz.unanswered = 0;
 
-		//show game
-		$('#game').show();
+// 		//show game
+// 		$('#game').show();
 
-		//clean results
-		$('#results').html('');
+// 		//clean results
+// 		$('#results').html('');
 
-		//make start button disappear
-		$('#start').hide();
+// 		//make start button disappear
+// 		$('#start').hide();
 
-		//ask our first question
-		quiz.nextQuestion();
-	},
+// 		//ask our first question
+// 		quiz.nextQuestion();
+// 	},
 
-	nextQuestion: function () {
-		var questionContent = Object.values(quiz.questions)[quiz.currentScore];
-		$('#question').text(questionContent);
+// 	nextQuestion: function () {
+// 		var questionContent = Object.values(quiz.questions)[quiz.currentScore];
+// 		$('#question').text(questionContent);
 
-		var questionOptions = Object.values(quiz.options)[quiz.currentScore];
+// 		var questionOptions = Object.values(quiz.options)[quiz.currentScore];
 
-		//create the options in the html
-		$.each(questionOptions, function (index, key) {
-			$('#options').append($('<button class="option btn btn-info btn-lg"' + key + '</button>'));
-		});
-	}
-};
+// 		//create the options in the html
+// 		$.each(questionOptions, function (index, key) {
+// 			$('#options').append($('<button class="option btn btn-info btn-lg"' + key + '</button>'));
+// 		});
+// 	}
+// };
 
-//let currentquestion;
-// let score = 0;
-// var endDate = newDate(":60").getTime();
-// questions.children.setAttribute('style', 'color:#bf5700; underline: margin:2px; padding 2px');
+// //let currentquestion;
+// // let score = 0;
+// // var endDate = newDate(":60").getTime();
+// // questions.children.setAttribute('style', 'color:#bf5700; underline: margin:2px; padding 2px');
 
-// // var QuizArray = [
-// // 	//question 1
-// // 	{
-// // 		Question: 'Commonly used data types DO NOT include:',
-// // 		choices: {
-// // 			A: 'strings',
-// // 			B: 'booleans',
-// // 			C: 'alets',
-// // 			D: 'nmbers'
-// // 		},
-// // 		correct: 'alerts'
-// // 	},
-// // 	//question 2
-// // 	{
-// // 		Question: 'The condition in an if/else statement is enclided withihn _____.',
-// // 		choices: {
-// // 			A: 'quotes',
-// // 			B: 'curly brackets',
-// // 			C: 'paranthesis',
-// // 			D: 'square brackets'
-// // 		},
-// // 		correct: 'curly brackets'
-// // 	},
-// // 	//question 3
-// // 	{
-// // 		Question: 'Arrays in JavaScript can be useful to store _____.',
-// // 		choices: {
-// // 			A: 'numbers and strings',
-// // 			B: 'other arrays',
-// // 			C: 'booleans',
-// // 			D: 'all of the above'
-// // 		},
-// // 		correct: 'all of the above'
-// // 	},
-// // 	//question 4
-// // 	{
-// // 		Question: 'String values must be enclosed within ____ when being assigned to variables.',
-// // 		choices: {
-// // 			A: 'rcommas',
-// // 			B: 'curly brackets',
-// // 			C: 'quotes',
-// // 			D: 'paranthesis'
-// // 		},
-// // 		correct: 'quotes'
-// // 	},
-// // 	//question 5
-// // 	{
-// // 		Question: 'A very useful tool used during development and debugging for printing content to the debugger is:',
-// // 		choices: {
-// // 			A: 'JavaScript',
-// // 			B: 'terminal/bash',
-// // 			C: 'for loops',
-// // 			D: 'console.log'
-// // 		},
-// // 		correct: 'console.log'
-// // 	}
-// // ];
+// // // var QuizArray = [
+// // // 	//question 1
+// // // 	{
+// // // 		Question: 'Commonly used data types DO NOT include:',
+// // // 		choices: {
+// // // 			A: 'strings',
+// // // 			B: 'booleans',
+// // // 			C: 'alets',
+// // // 			D: 'nmbers'
+// // // 		},
+// // // 		correct: 'alerts'
+// // // 	},
+// // // 	//question 2
+// // // 	{
+// // // 		Question: 'The condition in an if/else statement is enclided withihn _____.',
+// // // 		choices: {
+// // // 			A: 'quotes',
+// // // 			B: 'curly brackets',
+// // // 			C: 'paranthesis',
+// // // 			D: 'square brackets'
+// // // 		},
+// // // 		correct: 'curly brackets'
+// // // 	},
+// // // 	//question 3
+// // // 	{
+// // // 		Question: 'Arrays in JavaScript can be useful to store _____.',
+// // // 		choices: {
+// // // 			A: 'numbers and strings',
+// // // 			B: 'other arrays',
+// // // 			C: 'booleans',
+// // // 			D: 'all of the above'
+// // // 		},
+// // // 		correct: 'all of the above'
+// // // 	},
+// // // 	//question 4
+// // // 	{
+// // // 		Question: 'String values must be enclosed within ____ when being assigned to variables.',
+// // // 		choices: {
+// // // 			A: 'rcommas',
+// // // 			B: 'curly brackets',
+// // // 			C: 'quotes',
+// // // 			D: 'paranthesis'
+// // // 		},
+// // // 		correct: 'quotes'
+// // // 	},
+// // // 	//question 5
+// // // 	{
+// // // 		Question: 'A very useful tool used during development and debugging for printing content to the debugger is:',
+// // // 		choices: {
+// // // 			A: 'JavaScript',
+// // // 			B: 'terminal/bash',
+// // // 			C: 'for loops',
+// // // 			D: 'console.log'
+// // // 		},
+// // // 		correct: 'console.log'
+// // // 	}
+// // // ];
 
-// // function Que (dd) {
-// // 	// add loop
+// // // function Que (dd) {
+// // // 	// add loop
 
-// // 	// console.log('correct' + QuizArray[i].correct);
-// // 	question.textContent = QuizArray[dd].Question;
-// // 	answerA.textContent = QuizArray[dd].choices.A;
-// // 	answerB.textContent = QuizArray[dd].choices.B;
-// // 	answerC.textContent = QuizArray[dd].choices.C;
-// // 	answerD.textContent = QuizArray[dd].choices.D;
-// // 	displaycorrect.textContent = QuizArray[dd].correct;
-// // 	console.log(dd);
-// // }
-// // for (var i = 0; i < currentquestion.length; i++) {
-// // 	//starts the whole thing right here, start a timer here
-// // 	// Que(i);
-// // 	console.log(currentquestion);
-// // }
+// // // 	// console.log('correct' + QuizArray[i].correct);
+// // // 	question.textContent = QuizArray[dd].Question;
+// // // 	answerA.textContent = QuizArray[dd].choices.A;
+// // // 	answerB.textContent = QuizArray[dd].choices.B;
+// // // 	answerC.textContent = QuizArray[dd].choices.C;
+// // // 	answerD.textContent = QuizArray[dd].choices.D;
+// // // 	displaycorrect.textContent = QuizArray[dd].correct;
+// // // 	console.log(dd);
+// // // }
+// // // for (var i = 0; i < currentquestion.length; i++) {
+// // // 	//starts the whole thing right here, start a timer here
+// // // 	// Que(i);
+// // // 	console.log(currentquestion);
+// // // }
 
-// // //starts the whole thing right here, start a timer here
-// // Que(0);
+// // // //starts the whole thing right here, start a timer here
+// // // Que(0);
 
-// // // uses global variable to check if answer is correct
-// // function clickedA () {
-// // 	//check for right answer and add to score
-// // 	if (QuizArray[currentquestion].choices.A === QuizArray[currentquestion].correct) {
-// // 		console.log('correct');
-// // 		displaycorrect.textcontent = 'Correct!';
-// // 		score++;
-// // 	}
-// // 	else {
-// // 		console.log('false');
-// // 		displaycorrect.textcontent = 'Wrong!';
-// // 	}
-// // 	//switch to next question
+// // // // uses global variable to check if answer is correct
+// // // function clickedA () {
+// // // 	//check for right answer and add to score
+// // // 	if (QuizArray[currentquestion].choices.A === QuizArray[currentquestion].correct) {
+// // // 		console.log('correct');
+// // // 		displaycorrect.textcontent = 'Correct!';
+// // // 		score++;
+// // // 	}
+// // // 	else {
+// // // 		console.log('false');
+// // // 		displaycorrect.textcontent = 'Wrong!';
+// // // 	}
+// // // 	//switch to next question
+// // // 	currentquestion++;
+// // // 	//add 2 sec delay here
+// // // 	Que(currentquestion);
+// // // }
+
+// // // function clickedB () {
+// // // 	//check for right answer and add to score
+// // // 	if (QuizArray[currentquestion].choices.B === QuizArray[currentquestion].correct) {
+// // // 		console.log('correct');
+// // // 		displaycorrect.textcontent = 'Correct!';
+// // // 		score++;
+// // // 	}
+// // // 	else {
+// // // 		console.log('false');
+// // // 		displaycorrect.textcontent = 'Wrong!';
+// // // 	}
+// // // 	//switch to next question
+// // // 	currentquestion++;
+// // // 	//add 2 sec delay here
+// // // 	Que(currentquestion);
+// // // }
+
+// // // function clickedC () {
+// // // 	//check for right answer and add to score
+// // // 	if (QuizArray[currentquestion].choices.C === QuizArray[currentquestion].correct) {
+// // // 		console.log('correct');
+// // // 		displaycorrect.textcontent = 'Correct!';
+// // // 		score++;
+// // // 	}
+// // // 	else {
+// // // 		console.log('false');
+// // // 		displaycorrect.textcontent = 'Wrong!';
+// // // 	}
+// // // 	//switch to next question
 // // 	currentquestion++;
 // // 	//add 2 sec delay here
 // // 	Que(currentquestion);
 // // }
 
-// // function clickedB () {
-// // 	//check for right answer and add to score
-// // 	if (QuizArray[currentquestion].choices.B === QuizArray[currentquestion].correct) {
-// // 		console.log('correct');
-// // 		displaycorrect.textcontent = 'Correct!';
-// // 		score++;
-// // 	}
-// // 	else {
-// // 		console.log('false');
-// // 		displaycorrect.textcontent = 'Wrong!';
-// // 	}
-// // 	//switch to next question
-// // 	currentquestion++;
-// // 	//add 2 sec delay here
-// // 	Que(currentquestion);
-// // }
-
-// // function clickedC () {
-// // 	//check for right answer and add to score
-// // 	if (QuizArray[currentquestion].choices.C === QuizArray[currentquestion].correct) {
-// // 		console.log('correct');
-// // 		displaycorrect.textcontent = 'Correct!';
-// // 		score++;
-// // 	}
-// // 	else {
-// // 		console.log('false');
-// // 		displaycorrect.textcontent = 'Wrong!';
-// // 	}
-// // 	//switch to next question
+// function clickedD () {
+// 	//check for right answer and add to score
+// 	if (QuizArray[currentquestion].choices.D === QuizArray[currentquestion].correct) {
+// 		console.log('correct');
+// 		displaycorrect.textcontent = 'Correct!';
+// 		score++;
+// 	}
+// 	else {
+// 		console.log('false');
+// 		displaycorrect.textcontent = 'Wrong!';
+// 	}
+// 	//switch to next question
 // 	currentquestion++;
 // 	//add 2 sec delay here
 // 	Que(currentquestion);
 // }
 
-function clickedD () {
-	//check for right answer and add to score
-	if (QuizArray[currentquestion].choices.D === QuizArray[currentquestion].correct) {
-		console.log('correct');
-		displaycorrect.textcontent = 'Correct!';
-		score++;
-	}
-	else {
-		console.log('false');
-		displaycorrect.textcontent = 'Wrong!';
-	}
-	//switch to next question
-	currentquestion++;
-	//add 2 sec delay here
-	Que(currentquestion);
-}
+// // Add timer here -----------------------------------------------
+// // =======================================================================
+// var statusSpan = document.querySelector('#status');
+// var statusToggle = document.querySelector('#status-toggle');
+// var playButton = document.querySelector('#play');
+// var minutesDisplay = document.querySelector('#minutes');
+// var secondsDisplay = document.querySelector('#seconds');
+// var totalSeconds = 0;
+// var secondsElapsed = 0;
+// var status = 'Working';
+// var interval;
 
-// Add timer here -----------------------------------------------
-// =======================================================================
-var statusSpan = document.querySelector('#status');
-var statusToggle = document.querySelector('#status-toggle');
-var playButton = document.querySelector('#play');
-var minutesDisplay = document.querySelector('#minutes');
-var secondsDisplay = document.querySelector('#seconds');
-var totalSeconds = 0;
-var secondsElapsed = 0;
-var status = 'Working';
-var interval;
+// /* One thing to distinguish here is that not all functions are created equal.
+//    Some functions just change settings, some functions just call other functions,
+//    some functions just format strings or numbers, etc. */
 
-/* One thing to distinguish here is that not all functions are created equal.
-   Some functions just change settings, some functions just call other functions,
-   some functions just format strings or numbers, etc. */
+// //this launches the app by calling setTime() and renderTime()
+// // getTimePreferences();
 
-//this launches the app by calling setTime() and renderTime()
-// getTimePreferences();
+// //These two functions are just for making sure the numbers look nice for the html elements
+// function getFormattedMinutes () {
+// 	var secondsLeft = totalSeconds - secondsElapsed;
+// 	var minutesLeft = Math.floor(secondsLeft / 75);
+// 	var formattedMinutes;
 
-//These two functions are just for making sure the numbers look nice for the html elements
-function getFormattedMinutes () {
-	var secondsLeft = totalSeconds - secondsElapsed;
-	var minutesLeft = Math.floor(secondsLeft / 75);
-	var formattedMinutes;
+// 	if (minutesLeft < 10) {
+// 		formattedMinutes = '0' + minutesLeft;
+// 	}
+// 	else {
+// 		formattedMinutes = minutesLeft;
+// 	}
 
-	if (minutesLeft < 10) {
-		formattedMinutes = '0' + minutesLeft;
-	}
-	else {
-		formattedMinutes = minutesLeft;
-	}
+// 	return formattedMinutes;
+// }
 
-	return formattedMinutes;
-}
+// function getFormattedSeconds () {
+// 	var secondsLeft = (totalSeconds - secondsElapsed) % 60;
+// 	var formattedSeconds;
+// 	if (secondsLeft < 10) {
+// 		formattedSeconds = '0' + secondsLeft;
+// 	}
+// 	else {
+// 		formattedSeconds = secondsLeft;
+// 	}
 
-function getFormattedSeconds () {
-	var secondsLeft = (totalSeconds - secondsElapsed) % 60;
-	var formattedSeconds;
-	if (secondsLeft < 10) {
-		formattedSeconds = '0' + secondsLeft;
-	}
-	else {
-		formattedSeconds = secondsLeft;
-	}
+// 	return formattedSeconds;
+// }
 
-	return formattedSeconds;
-}
+// // /* This function just retrieves the values from the html input elements; Sort of
+// //    getting run in the background, it sets the totalSeconds variable which
+// //    is used in getFormattedMinutes/Seconds() and the renderTime() function.
+// //    It essentially resets our timer */
+// function setTime () {
+// 	var minutes;
+// 	if (status === 'Working') {
+// 		minutes = workMinutesInput.value.trim();
+// 	}
+// 	else {
+// 		minutes = restMinutesInput.value.trim();
+// 	}
 
-// /* This function just retrieves the values from the html input elements; Sort of
-//    getting run in the background, it sets the totalSeconds variable which
-//    is used in getFormattedMinutes/Seconds() and the renderTime() function.
-//    It essentially resets our timer */
-function setTime () {
-	var minutes;
-	if (status === 'Working') {
-		minutes = workMinutesInput.value.trim();
-	}
-	else {
-		minutes = restMinutesInput.value.trim();
-	}
-
-	clearInterval(interval);
-	totalSeconds = minutes * 60;
-}
+// 	clearInterval(interval);
+// 	totalSeconds = minutes * 60;
+// }
 
 // //This function does 2 things. displays the time and checks to see if time is up.
 // function renderTime () {
