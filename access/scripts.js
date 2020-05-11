@@ -13,6 +13,7 @@ var quiz = {
 	currentScore: 0,
 	quizTimer: false,
 	timerId: '',
+	clock: 0,
 
 	questions: {
 		q1: 'A very useful tool used during development and debugging for printing content to the debugger is:',
@@ -43,12 +44,17 @@ var quiz = {
 		quiz.correct = 0;
 		quiz.incorrect = 0;
 		quiz.unanswered = 0;
+
 		// clock code
 		var clockCounter = $('div#clock');
 		var clock = 75;
-		console.log(clockCounter);
+		var clockCounter = 75;
 
-		// function myFunction () {
+		setInterval(function () {
+		  clockCounter--;
+		  $("div#clock").html(clockCounter);
+		}, 1000);
+
 		clock = setInterval(alertFunc, 1000);
 		// }
 		function alertFunc () {
@@ -56,7 +62,7 @@ var quiz = {
 			clock--;
 			// console.log(clock);
 		}
-
+	
 		// show game section
 		$('#game').show();
 
@@ -76,7 +82,7 @@ var quiz = {
 			quiz.timerId = setInterval(quiz.userAnswers, 1000);
 		}
 
-		// gets all the questions then indexes the current questions
+		// gets all the questions then indexes the current questions - display
 		var questionContent = Object.values(quiz.questions)[quiz.currentScore];
 		$('#question').text(questionContent);
 
@@ -92,6 +98,8 @@ var quiz = {
 	userAnswers: function () {
 		// if all the questions have been shown end the game, show results
 		if (quiz.currentScore === Object.keys(quiz.questions).length) {
+			// stop timer and display time left
+
 			// adds results of game (correct, incorrect, unanswered) to the page
 			$('#results').html(
 				'<h3>Thank you for playing!</h3>' +
@@ -109,6 +117,9 @@ var quiz = {
 
 			// hide game sction
 			$('#game').hide();
+			console.log(clock);
+			var readTime = clock.substr(15,17);
+			console.log(readTime);
 
 			// show start button to begin a new game
 			$('#start').show();
@@ -149,6 +160,10 @@ var quiz = {
 		quiz.nextQuestion();
 	}
 };
+		// var = i; for (i=0; i<clockCounter; i--) {
+		// 	text clockCounter = x[i] + "<br>";
+		// }
+
 
 // let question = document.getElementById('questions');
 // let answerA = document.getElementById('ansA');
