@@ -1,8 +1,7 @@
 $(document).ready(function () {
-	// event listeners using JQuery
 	$('#remaining-time').hide();
-	$('#start').on('click', quiz.startGame);
-	$(document).on('click', '.option', quiz.checkAnswers);
+	$('#start').on('click', startGame);
+	$(document).on('click', '.option', checkAnswers);
 
 	var quiz = {
 		// quiz properties here
@@ -50,7 +49,7 @@ $(document).ready(function () {
 		// remove start button
 		$('#start').hide();
 		// ask first question
-		quiz.nextQuestion();
+		nextQuestion();
 	}
 	// method to loop through and display questions and options
 	function nextQuestion () {
