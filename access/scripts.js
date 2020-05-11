@@ -43,7 +43,19 @@ var quiz = {
 		quiz.correct = 0;
 		quiz.incorrect = 0;
 		quiz.unanswered = 0;
-		clearInterval(quiz.timerId);
+		// clock code
+		var clockCounter = $('div#clock');
+		var clock = 75;
+		console.log(clockCounter);
+
+		// function myFunction () {
+		clock = setInterval(alertFunc, 1000);
+		// }
+		function alertFunc () {
+			$('div#clock').html() = clock;
+			clock--;
+			// console.log(clock);
+		}
 
 		// show game section
 		$('#game').show();
