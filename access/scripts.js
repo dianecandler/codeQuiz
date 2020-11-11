@@ -1,4 +1,4 @@
-// utilizing JQuery
+// utilizing JavaScript using JQuery
 $(document).ready(function () {
 	// event listeners
 	$('#remaining-time').hide();
@@ -47,14 +47,19 @@ var quiz = {
 		quiz.unanswered = 0;
 
 		// clock code
-		var clockCounter = $('div#clock');
+		var clockCounter = $('span#clock');
 		var clock = 75;
-		var clockCounter = 75;
+		clockCounter = 75;
 
-		setInterval(function () {
+		var aTime = setInterval(function () {
+			if(clockCounter === 1) {
+				clearInterval(aTime);
+
+			}
 			clockCounter--;
-			$('div#clock').html(clockCounter);
+			$('span#clock').html(clockCounter);
 		}, 1000);
+
 
 		// show game section
 		$('#game').show();
@@ -84,7 +89,7 @@ var quiz = {
 
 		// creates all the quiz guess options in the html
 		$.each(questionOptions, function (index, key) {
-			$('#options').append($('<button class="option btn btn-info btn-lg">' + key + '</button>'));
+			$('#options').append($('<button class="option btn btn-info btn-lg btn-block mb-1">' + key + '</button>'));
 		});
 	},
 	// method to decrement counter and count unanswered if timer runs out
@@ -116,6 +121,7 @@ var quiz = {
 
 			// show start button to begin a new game
 			$('#start').show();
+			clearInterval(aTime);
 		}
 	},
 	// method to evaluate the option clicked
@@ -128,7 +134,7 @@ var quiz = {
 
 			quiz.correct++;
 			clearInterval(quiz.timerId);
-			resultId = setTimeout(quiz.guessResult, 1000);
+			resultId = setTimeout(quiz.guessResult, 2000);
 			$('#results').html('<h3>Correct Answer!</h3>');
 		}
 		else {
@@ -136,7 +142,7 @@ var quiz = {
 
 			quiz.incorrect++;
 			clearInterval(quiz.timerId);
-			resultId = setTimeout(quiz.guessResult, 1000);
+			resultId = setTimeout(quiz.guessResult, 5000);
 			$('#results').html('<h3>Ops wrong answer, the right choice was ' + currentAnswer + '</h3>');
 		}
 	},
