@@ -21,7 +21,7 @@
 
 ![code quiz](screenCaptures.png)
 
-### Thank you
+### Thank you so much!
 
 ***Your time is valuable. Thank you for taking time to review this program. Feedback is welcome at dianedcandler@gmail.com.***
 
