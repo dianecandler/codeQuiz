@@ -3,7 +3,7 @@
 ***JavaScript / JQuery Application by Diane Candler***
 <hr>
 
-### Beat the clock!  
+### Beat the clock!  :alarm_clock:
 *This quiz prompts players to answer questions before the game timer runs out.*
 
 ## About this Application 
@@ -19,7 +19,8 @@
 :question: :question: :question: :question: :question: :question: :question: :question: :question:
 
 
-![code quiz](screenCaptures.png)
+![code quiz](/screenCaptures.png)
+![Code Quiz Screenshot](/images/logo.png)
 
 ### Thank you
 
