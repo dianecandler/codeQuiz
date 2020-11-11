@@ -19,7 +19,7 @@
 :question: :question: :question: :question: :question: :question: :question: :question: :question:
 
 
-![code quiz](screenCaptures.PNG)
+![code quiz](screenCaptures.png)
 
 ### Thank you
 
