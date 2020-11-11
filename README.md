@@ -18,7 +18,7 @@
  * Incorrect answers display the correct answer.  Timer is set to delay moving to the next question to ensure time for the gamer to reflect.
  * Plans to add more questions and the ability to leave gamer's name then dynamically list highest scores.
  ```
-:question: :question: :question: :question: :question: :question: :question: :question: :question:
+:question: :question: :question: :question: :question: :question: :question: :question: :question: :question: :question: :question: :question: :question: :question: :question: :question: :question:
 
 
 ![code quiz](screenCaptures.png)
