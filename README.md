@@ -1,4 +1,4 @@
-# Code Quiz
+# Code Quiz 
 
 ***JavaScript / JQuery Application by Diane Candler***
 <hr>
@@ -6,7 +6,7 @@
 ### Beat the clock!  
 *This quiz prompts players to answer questions before the game timer runs out.*
 
-## About this Application
+## About this Application 
  
  ```
  * Designed as a simple coding refresher game.
@@ -16,6 +16,8 @@
  * Incorrect answers display the correct answer.  Timer is set to delay moving to the next question to ensure time for the gamer to reflect.
  * Plans to add more questions and the ability to leave gamer's name then dynamically list highest scores.
  ```
+:question: :question: :question: :question: :question: :question: :question: :question: :question:
+
 
 ![code quiz](screenCaptures.PNG)
 
