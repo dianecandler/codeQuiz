@@ -3,7 +3,11 @@
 ***JavaScript / JQuery Application by Diane Candler***
 <hr>
 
+<<<<<<< HEAD
 ### Beat the clock!  
+=======
+### Beat the clock!  :alarm_clock:
+>>>>>>> d2b0ca317bf2a9db00ef7f197990ff73bc8dbadd
 *This quiz prompts players to answer questions before the game timer runs out.*
 
 ## About this Application 
@@ -19,6 +23,7 @@
 :question: :question: :question: :question: :question: :question: :question: :question: :question:
 
 
+<<<<<<< HEAD
 ![code quiz](screenCaptures.png)
 
 ### Thank you so much!
@@ -27,6 +32,20 @@
 
 
 ### View my Portfolio for more Applications
+=======
+![code quiz](/screenCaptures.png)
+![Code Quiz Screenshot](/images/logo.png)
+
+### Thank you
+
+***Your time is valuable. Thank you for taking time to review this program.***
+
+Feedback is welcome at dianeDcandler@gmail.com
+
+
+### View my Portfolio for more Applications
+
+>>>>>>> d2b0ca317bf2a9db00ef7f197990ff73bc8dbadd
 **[https://dianecandler.herokuapp.com/](https://dianecandler.herokuapp.com/)**
 
 - - -
