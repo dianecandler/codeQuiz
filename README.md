@@ -23,10 +23,13 @@
 
 ### Thank you
 
-***Your time is valuable. Thank you for taking time to review this program. Feedback is welcome at dianedcandler@gmail.com.***
+***Your time is valuable. Thank you for taking time to review this program.***
+
+Feedback is welcome at dianeDcandler@gmail.com
 
 
 ### View my Portfolio for more Applications
+
 **[https://dianecandler.herokuapp.com/](https://dianecandler.herokuapp.com/)**
 
 - - -
