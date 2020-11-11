@@ -1,8 +1,10 @@
 # Code Quiz
 
 ***JavaScript / JQuery Application by Diane Candler***
+<hr>
 
-### The goal of this quiz is to allow the player to select answers to questions before the game timer runs out.
+### Beat the clock!  
+*This quiz prompts players to answer questions before the game timer runs out.*
 
 ## About this Application
  
